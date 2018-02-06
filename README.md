@@ -1,1 +1,1 @@
-# Django-girls-blog-PetrushynskyiOleksii 
+# Django-girls-blog-PetrushynskyiOleksii
