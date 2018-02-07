@@ -10,6 +10,7 @@
   - id: end-of-file-fixer
   - id: flake8
     args: [--max-line-length=120]
+    exclude: blog/migrations/
   - id: name-tests-test
   - id: requirements-txt-fixer
   - id: trailing-whitespace
