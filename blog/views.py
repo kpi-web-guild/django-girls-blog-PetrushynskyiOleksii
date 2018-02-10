@@ -20,7 +20,7 @@ def post_detail(request, pk):
 
 
 def post_new(request):
-    """Render page with form of post."""
+    """Create a new post."""
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
