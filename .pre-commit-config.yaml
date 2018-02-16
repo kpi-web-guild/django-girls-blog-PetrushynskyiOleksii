@@ -12,6 +12,7 @@
     args: [--max-line-length=120]
     exclude: blog/migrations/
   - id: name-tests-test
+    args: [--django]
   - id: requirements-txt-fixer
   - id: trailing-whitespace
 
