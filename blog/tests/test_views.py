@@ -22,7 +22,8 @@ class PostViewTest(TestCase):
         self.client = Client()
         self.user = User.objects.create_superuser(username=self.USERNAME,
                                                   password=self.PASSWORD,
-                                                  email=self.EMAIL,)
+                                                  email=self.EMAIL,
+                                                  )
         self.tz = timezone.get_current_timezone()
         self.first_post = Post.objects.create(author=self.user,
                                               title='Title Test 1',
@@ -53,11 +54,11 @@ class PostViewTest(TestCase):
 
     def test_post_list(self):
         """Test list of posts."""
-        response = self.client.get(reverse('post_list'))
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context['posts']), 3)
-        self.assertTemplateUsed(response, 'blog/post_list.html', 'blog/base.html')
-        with patch('django.utils.timezone.now', lambda: datetime(day=1, month=1, year=2000, tzinfo=self.tz)):
+        with patch('django.utils.timezone.now', lambda: datetime(day=1, month=1, year=2018, tzinfo=self.tz)):
+            response = self.client.get(reverse('post_list'))
+            self.assertEqual(response.status_code, 200)
+            self.assertTemplateUsed(response, 'blog/post_list.html', 'blog/base.html')
+            self.assertEqual(len(response.context['posts']), 3)
             self.assertNotContains(response, self.future_post)
 
     def test_sorting_post_list(self):
