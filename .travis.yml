@@ -4,9 +4,9 @@ cache: pip
 
 
 before_install:
-  - pip install -U pre-commit
-  - pip install django==1.11
+- pip install -U pre-commit
+- pip install django==1.11
 
 script:
-  - pre-commit run --all-files
-  - python ./manage.py test
+- pre-commit run --all-files
+- python ./manage.py test
