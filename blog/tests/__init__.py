@@ -1,1 +1,1 @@
-"""Package of test for blog app."""
+"""Test suite for blog app."""

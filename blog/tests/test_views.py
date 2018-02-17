@@ -17,7 +17,7 @@ class PostViewTest(TestCase):
     PASSWORD = 'password'
 
     def setUp(self):
-        """Init test data."""
+        """Pre-populate test data."""
         self.client = Client()
         self.user = User.objects.create(username=self.USERNAME,
                                         email='testuser@test.com',
@@ -45,7 +45,7 @@ class PostViewTest(TestCase):
                                                published_date=datetime(day=4, month=4, year=2222, tzinfo=self.tz))
 
     def tearDown(self):
-        """Clean test data."""
+        """Clean-up test data."""
         del self.post1
         del self.post2
         del self.post3

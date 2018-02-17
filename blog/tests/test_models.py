@@ -10,14 +10,14 @@ class PostModelTest(TestCase):
     """Tests for post model."""
 
     def setUp(self):
-        """Init test data."""
+        """Pre-populate test data."""
         self.user = User.objects.create(username='UserTest')
         self.test_post = Post.objects.create(author=self.user,
                                              title='Title Test',
                                              text='Text Test 123 !@#')
 
     def tearDown(self):
-        """Delete test data."""
+        """Clean-up test data."""
         del self.user
         del self.test_post
 
