@@ -114,3 +114,11 @@ class PostViewTest(TestCase):
         self.assertTrue(authorization)
         response = self.client.get(reverse('post_draft_list'))
         self.assertEqual(200, response.status_code)
+
+    def test_publish_post(self):
+        """Test for publishing post."""
+        authorization = self.client.login(username=self.USERNAME, password=self.PASSWORD)
+        self.assertTrue(authorization)
+        post = Post.objects.create(author=self.user, title='Test Publish', text='Text Publish')
+        response = self.client.get(reverse('post_publish', kwargs={'pk': post.pk}), follow=True)
+        self.assertRedirects(response, reverse('post_detail', kwargs={'pk': post.pk}))
