@@ -1,23 +1,21 @@
 """Django settings for mysite project."""
 
-import os
-import dj_database_url
 
-ON_HEROKU = os.environ.get('ON_HEROKU')
+import environ
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+env = environ.Env(DEBUG=(bool, False),)
 
+BASE_DIR = environ.Path(__file__) - 2
+environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_u)sp0-q^_c!s645c-g5=whl97qsm&wxnw6rajs(hhri93wi9s'
+SECRET_KEY = env('SECRET_KEY', default='_u)sp0-q^_c!s645c-g5=whl97qsm&wxnw6rajs(hhri93wi9s')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-
-DEBUG = False
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['127.0.0.1', 'petrushynskyi.herokuapp.com']
 
@@ -68,12 +66,10 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-if ON_HEROKU:
-    DATABASE_URL = 'postgresql://postgresql'
-else:
-    DATABASE_URL = 'sqlite://' + os.path.join(BASE_DIR, 'db.sqlite3')
+DATABASES = {
+    'default': env.db(default='sqlite:///db.sqlite3'),
+}
 
-DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -112,4 +108,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT_DIR = env.path('STATIC_ROOT', BASE_DIR('static'))
+STATIC_ROOT = STATIC_ROOT_DIR()
