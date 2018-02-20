@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-10 15:49+0200\n"
+"POT-Creation-Date: 2018-02-20 16:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,34 +17,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: apps.py:10 templates/blog/base.html:7 templates/blog/base.html:21
+#: blog/apps.py:10 blog/templates/blog/base.html:7
+#: blog/templates/blog/base.html:24
 msgid "Django Girls blog"
 msgstr ""
 
-#: models.py:12
+#: blog/models.py:12
 msgid "Author"
 msgstr ""
 
-#: models.py:14
+#: blog/models.py:14
 msgid "Title"
 msgstr ""
 
-#: models.py:15
+#: blog/models.py:15
 msgid "Text"
 msgstr ""
 
-#: models.py:16
+#: blog/models.py:16
 msgid "Created date"
 msgstr ""
 
-#: models.py:18
+#: blog/models.py:18
 msgid "Published date"
 msgstr ""
 
-#: templates/blog/post_edit.html:6
+#: blog/templates/blog/post_detail.html:12
+msgid "Publish"
+msgstr ""
+
+#: blog/templates/blog/post_edit.html:6
 msgid "New Post"
 msgstr ""
 
-#: templates/blog/post_edit.html:9
+#: blog/templates/blog/post_edit.html:9
 msgid "Save"
 msgstr ""
