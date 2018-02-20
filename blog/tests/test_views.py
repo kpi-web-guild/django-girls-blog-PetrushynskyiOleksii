@@ -117,9 +117,11 @@ class PostViewTest(TestCase):
 
     def test_publish_post(self):
         """Test for publishing post."""
+        response = self.client.get(reverse('post_publish', kwargs={'pk': 9999}))
+        self.assertEqual(404, response.status_code)
         authorization = self.client.login(username=self.USERNAME, password=self.PASSWORD)
         self.assertTrue(authorization)
-        post = Post.objects.create(author=self.user, title='Test Publish', text='Text Publish')
+        post = Post.objects.create(id=9999, author=self.user, title='Test Publish', text='Text Publish')
         response = self.client.get(reverse('post_publish', kwargs={'pk': post.pk}), follow=True)
         self.assertRedirects(response, reverse('post_detail', kwargs={'pk': post.pk}))
 
@@ -128,7 +130,10 @@ class PostViewTest(TestCase):
         authorization = self.client.login(username=self.USERNAME, password=self.PASSWORD)
         self.assertTrue(authorization)
         post = Post.objects.create(author=self.user, title='Test Delete', text='Text Delete')
+
         response = self.client.post(reverse('post_remove', kwargs={'pk': post.pk}), follow=True)
         self.assertRedirects(response, reverse('post_list'))
         response = self.client.get(reverse('post_draft_list'), follow=True)
         self.assertNotContains(response, post)
+        response = self.client.get(reverse('post_detail', kwargs={'pk': post.pk}))
+        self.assertEqual(404, response.status_code)
