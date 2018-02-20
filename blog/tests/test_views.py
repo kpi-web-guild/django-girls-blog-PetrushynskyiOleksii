@@ -107,3 +107,10 @@ class PostViewTest(TestCase):
                                     follow=True)
         self.assertContains(response, 'Test Text Edit')
         self.assertEqual(200, response.status_code)
+
+    def test_drafts(self):
+        """Test view for drafts."""
+        authorization = self.client.login(username=self.USERNAME, password=self.PASSWORD)
+        self.assertTrue(authorization)
+        response = self.client.get(reverse('post_draft_list'))
+        self.assertEqual(200, response.status_code)
