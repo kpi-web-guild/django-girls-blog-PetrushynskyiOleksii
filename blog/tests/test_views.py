@@ -73,6 +73,10 @@ class PostViewTest(TestCase):
 
     def test_post_detail_view(self):
         """Test detail page of specific post."""
+        response = self.client.get(reverse('post_detail', kwargs={'pk': self.first_post.pk}))
+        self.assertEqual(302, response.status_code)
+        authorization = self.client.login(username=self.USERNAME, password=self.PASSWORD)
+        self.assertTrue(authorization)
         response = self.client.get(reverse('post_detail', kwargs={'pk': 9999}))
         self.assertEqual(404, response.status_code)
         response = self.client.get(reverse('post_detail', kwargs={'pk': self.first_post.pk}))
