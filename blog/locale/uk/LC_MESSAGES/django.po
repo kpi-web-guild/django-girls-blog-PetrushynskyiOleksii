@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-20 16:23+0200\n"
+"POT-Creation-Date: 2018-02-21 17:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: blog/apps.py:10 blog/templates/blog/base.html:7
-#: blog/templates/blog/base.html:24
+#: blog/templates/blog/base.html:31
 msgid "Django Girls blog"
 msgstr "Django Girls блог"
 
@@ -44,6 +44,14 @@ msgstr "Дата створення"
 msgid "Published date"
 msgstr "Дата Публікації"
 
+#: blog/templates/blog/base.html:23
+msgid "Hello"
+msgstr "Привіт"
+
+#: blog/templates/blog/base.html:24
+msgid "Log out"
+msgstr "Вийти"
+
 #: blog/templates/blog/post_detail.html:12
 msgid "Publish"
 msgstr "Опублікувати"
@@ -55,3 +63,11 @@ msgstr "Новий Пост"
 #: blog/templates/blog/post_edit.html:9
 msgid "Save"
 msgstr "Зберегти"
+
+#: blog/templates/registration/login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr "Ваш логін і пароль не вірні. Попробуйте ще раз."
+
+#: blog/templates/registration/login.html:23
+msgid "login"
+msgstr "увійти"
