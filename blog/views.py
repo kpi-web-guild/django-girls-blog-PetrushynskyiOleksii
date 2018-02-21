@@ -16,8 +16,11 @@ def post_list(request):
 
 def post_detail(request, pk):
     """Render page with details of specific post."""
-    post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    if request.user.is_authenticated:
+        post = get_object_or_404(Post, pk=pk)
+        return render(request, 'blog/post_detail.html', {'post': post})
+    else:
+        return redirect('login')
 
 
 @login_required
