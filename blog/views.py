@@ -1,5 +1,6 @@
 """Views for blog app."""
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
@@ -19,6 +20,7 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', {'post': post})
 
 
+@login_required
 def post_new(request):
     """Create a new post."""
     if request.method == 'POST':
@@ -33,6 +35,7 @@ def post_new(request):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 
+@login_required
 def post_edit(request, pk):
     """Edit existent post."""
     post = get_object_or_404(Post, pk=pk)
@@ -48,12 +51,14 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 
+@login_required
 def post_draft_list(request):
     """Render page with list of drafts posts."""
     posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
 
 
+@login_required
 def post_publish(request, pk):
     """Publish post."""
     post = get_object_or_404(Post, pk=pk)
@@ -61,6 +66,7 @@ def post_publish(request, pk):
     return redirect('post_detail', pk=pk)
 
 
+@login_required
 def post_remove(request, pk):
     """Detete post."""
     post = get_object_or_404(Post, pk=pk)
