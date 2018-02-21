@@ -80,6 +80,8 @@ class PostViewTest(TestCase):
 
     def test_post_new_view(self):
         """Test view for add post."""
+        response = self.client.get(reverse('post_new'))
+        self.assertEqual(302, response.status_code)
         authorization = self.client.login(username=self.USERNAME, password=self.PASSWORD)
         self.assertTrue(authorization)
         response = self.client.post(reverse('post_new'),
@@ -93,6 +95,8 @@ class PostViewTest(TestCase):
 
     def test_post_edit(self):
         """Test view for edit post."""
+        response = self.client.get(reverse('post_edit', kwargs={'pk': self.first_post.pk}))
+        self.assertEqual(302, response.status_code)
         authorization = self.client.login(username=self.USERNAME, password=self.PASSWORD)
         self.assertTrue(authorization)
         response = self.client.get(reverse('post_edit', kwargs={'pk': 9999}))
@@ -110,6 +114,8 @@ class PostViewTest(TestCase):
 
     def test_drafts(self):
         """Test view for drafts."""
+        response = self.client.get(reverse('post_draft_list'))
+        self.assertEqual(302, response.status_code)
         authorization = self.client.login(username=self.USERNAME, password=self.PASSWORD)
         self.assertTrue(authorization)
         response = self.client.get(reverse('post_draft_list'))
@@ -117,16 +123,21 @@ class PostViewTest(TestCase):
 
     def test_publish_post(self):
         """Test for publishing post."""
-        response = self.client.get(reverse('post_publish', kwargs={'pk': 9999}))
-        self.assertEqual(404, response.status_code)
+        response = self.client.get(reverse('post_publish', kwargs={'pk': 1}))
+        self.assertEqual(302, response.status_code)
         authorization = self.client.login(username=self.USERNAME, password=self.PASSWORD)
         self.assertTrue(authorization)
+        response = self.client.get(reverse('post_publish', kwargs={'pk': 9999}))
+        self.assertEqual(404, response.status_code)
         post = Post.objects.create(id=9999, author=self.user, title='Test Publish', text='Text Publish')
         response = self.client.get(reverse('post_publish', kwargs={'pk': post.pk}), follow=True)
         self.assertRedirects(response, reverse('post_detail', kwargs={'pk': post.pk}))
 
     def test_delete_post(self):
         """Test for deleting post."""
+        response = self.client.get(reverse('post_remove', kwargs={'pk': self.first_post.pk}))
+        self.assertEqual(302, response.status_code)
+
         authorization = self.client.login(username=self.USERNAME, password=self.PASSWORD)
         self.assertTrue(authorization)
         post = Post.objects.create(author=self.user, title='Test Delete', text='Text Delete')
