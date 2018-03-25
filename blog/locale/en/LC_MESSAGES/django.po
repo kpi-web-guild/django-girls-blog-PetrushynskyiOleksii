@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-20 16:23+0200\n"
+"POT-Creation-Date: 2018-02-21 17:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: blog/apps.py:10 blog/templates/blog/base.html:7
-#: blog/templates/blog/base.html:24
+#: blog/templates/blog/base.html:31
 msgid "Django Girls blog"
 msgstr ""
 
@@ -42,6 +42,14 @@ msgstr ""
 msgid "Published date"
 msgstr ""
 
+#: blog/templates/blog/base.html:23
+msgid "Hello"
+msgstr ""
+
+#: blog/templates/blog/base.html:24
+msgid "Log out"
+msgstr ""
+
 #: blog/templates/blog/post_detail.html:12
 msgid "Publish"
 msgstr ""
@@ -52,4 +60,12 @@ msgstr ""
 
 #: blog/templates/blog/post_edit.html:9
 msgid "Save"
+msgstr ""
+
+#: blog/templates/registration/login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+
+#: blog/templates/registration/login.html:23
+msgid "login"
 msgstr ""
